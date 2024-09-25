@@ -2,7 +2,7 @@ lista = []
 try:
     lista.append(float(input('Digite o primeiro valor: ')))
     lista.append(float(input('Digite o segundo valor: ')))
-    soma = lista[0] / lista[1]
+    divisao = lista[0] / lista[1]
     
 except ValueError:
     print('Erro! Valor inválido')
@@ -17,6 +17,6 @@ except KeyboardInterrupt:
     print('Usuario interrompeu a execução')
     
 else:
-    print(f'A divisão é {soma}')
+    print(f'A divisão é {divisao}')
      
  
