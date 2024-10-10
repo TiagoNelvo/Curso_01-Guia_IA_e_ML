@@ -165,3 +165,6 @@ class Aestrela:
             
             if vetor_ordenado.valores[0] != None:
                 self.buscar(vetor_ordenado.valores[0].vertice)
+                
+busca_aestrela = Aestrela(grafo.bucharest)
+busca_aestrela.buscar(grafo.arad)                
