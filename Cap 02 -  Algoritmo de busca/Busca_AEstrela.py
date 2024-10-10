@@ -18,6 +18,7 @@ class Adjacente:
     def __init__(self, vertice, custo):
         self.vertice = vertice
         self.custo = custo
+        self.distancia_aestrela = vertice.distancia_objetivo + self.custo
         
 class Grafo:
     def __init__(self):
@@ -36,7 +37,6 @@ class Grafo:
         self.bucharest = Vertice('Bucharest', 0)
         self.giurgiu   = Vertice('Giurgiu', 77)
         
-    # self.cria_grafo()
     
     #def cria_grafo(self):
         self.arad.adiciona_adjacente(Adjacente(self.zerind, 75))
@@ -85,25 +85,27 @@ class Grafo:
         
         self.giurgiu.adiciona_adjacente(Adjacente(self.bucharest, 90))
 
-# Vetor Ordenado
+grafo = Grafo()
+
+# Vetor Ordenado(Adjacente)
 
 class VetorOrdenado:
+  
     def __init__(self, capacidade):
         self.capacidade = capacidade
         self.ultima_posicao = -1
-        # udança no tipo de dados
+    # Mudança no tipo de dados
         self.valores = np.empty(self.capacidade, dtype=object)
-        
-    # Referência para o vértice e comparação com a disntância para o objetivo
-    
-    def insere(self, vertice):
+
+  # Referência para o vértice e comparação com a distância para o objetivo
+    def insere(self, adjacente):
         if self.ultima_posicao == self.capacidade -1:
-            print('Capacidae máxima atingida')
+            print('Capacidade máxima atingida')
             return
         posicao = 0
-        for i in range(self.ultima_posicao + 1):
+        for i in range(self.ultima_posicao +1):
             posicao = i
-            if self.valores[i].distancia_objetivo > vertice.distancia_objetivo:
+            if self.valores[i].distancia_aestrela > adjacente.distancia_aestrela:
                 break
             if i == self.ultima_posicao:
                 posicao = i + 1
@@ -111,25 +113,43 @@ class VetorOrdenado:
         while x >= posicao:
             self.valores[x + 1] = self.valores[x]
             x -= 1
-        self.valores[posicao] = vertice
+        self.valores[posicao] = adjacente
         self.ultima_posicao += 1
-        
+
     def imprime(self):
         if self.ultima_posicao == -1:
             print('O vetor está vazio')
         else:
             for i in range(self.ultima_posicao + 1):
-                print(i, ' - ', self.valores[i].rotulo, ' - ', self.valores[i].distancia_objetivo)
-                
-# Busca Gulosa
+                print(i, ' - ', 
+                    self.valores[i].vertice.rotulo, ' - ', 
+                    self.valores[i].custo, ' - ', 
+                    self.valores[i].vertice.distancia_objetivo, ' - ',
+                    self.valores[i].distancia_aestrela)  
+                    
 
-class Gulosa:
+grafo.arad.adjacentes
+
+grafo.arad.adjacentes[0].vertice.rotulo, grafo.arad.adjacentes[0].vertice.distancia_objetivo
+
+grafo.arad.adjacentes[0].distancia_aestrela, grafo.arad.adjacentes[0].custo
+
+vetor = VetorOrdenado(20)
+vetor.insere(grafo.arad.adjacentes[0])
+vetor.insere(grafo.arad.adjacentes[1])
+vetor.insere(grafo.arad.adjacentes[2])
+
+vetor.imprime()
+
+#Busca Aestrela
+
+class Aestrela:
     def __init__(self, objetivo):
         self.objetivo = objetivo
         self.encontrado = False
-        
+    
     def buscar(self, atual):
-        print('------')
+        print('----------------')
         print('Atual: {}'.format(atual.rotulo))
         atual.visitado = True
         
@@ -140,40 +160,8 @@ class Gulosa:
             for adjacente in atual.adjacentes:
                 if adjacente.vertice.visitado == False:
                     adjacente.vertice.visitado == True
-                    vetor_ordenado.insere(adjacente.vertice)
+                    vetor_ordenado.insere(adjacente)
             vetor_ordenado.imprime()
             
             if vetor_ordenado.valores[0] != None:
-                self.buscar(vetor_ordenado.valores[0])
-
-
-grafo = Grafo()
-print('------')
-grafo.arad.mostra_adjacentes()
-print('------')
-grafo.bucharest.mostra_adjacentes()
-print('------')
-
-vetor = VetorOrdenado(5)
-
-vetor.insere(grafo.arad)
-vetor.insere(grafo.craiova)
-vetor.insere(grafo.bucharest)
-vetor.insere(grafo.dobreta)
-
-print('------')
-
-vetor.imprime()
-
-vetor.insere(grafo.lugoj)
-
-print('------')
-
-vetor.imprime()
-
-print('------')
-
-vetor.valores[0], vetor.valores[0].rotulo
-
-busca_gulosa = Gulosa(grafo.bucharest)
-busca_gulosa.buscar(grafo.arad)
+                self.buscar(vetor_ordenado.valores[0].vertice)
