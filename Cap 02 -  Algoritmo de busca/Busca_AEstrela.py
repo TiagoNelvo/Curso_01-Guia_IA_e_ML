@@ -134,12 +134,12 @@ grafo.arad.adjacentes[0].vertice.rotulo, grafo.arad.adjacentes[0].vertice.distan
 
 grafo.arad.adjacentes[0].distancia_aestrela, grafo.arad.adjacentes[0].custo
 
-vetor = VetorOrdenado(20)
+'''vetor = VetorOrdenado(20)
 vetor.insere(grafo.arad.adjacentes[0])
 vetor.insere(grafo.arad.adjacentes[1])
 vetor.insere(grafo.arad.adjacentes[2])
 
-vetor.imprime()
+vetor.imprime()'''
 
 #Busca Aestrela
 
