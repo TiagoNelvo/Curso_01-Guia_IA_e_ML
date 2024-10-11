@@ -71,7 +71,7 @@ def fitness_function(agenda):
         total_preco += volta[2]
     return total_preco
 
-#fitness_function(agenda)
+# fitness_function(agenda)
 
 
 import six
@@ -85,7 +85,7 @@ problema = mlrose.DiscreteOpt(length=12, fitness_fn=fitness,
                               maximize = False, max_val=10)
 
 
-#Hill Climb
+# Hill Climb
 melhor_solucao, melhor_custo = mlrose.hill_climb(problema, random_state=1)
 melhor_solucao, melhor_custo
 
@@ -94,3 +94,5 @@ imprimir_voos(melhor_solucao)
 print('-----------')
 
 voos[('BRU', 'FCO')]
+
+# Simulated Annealing
