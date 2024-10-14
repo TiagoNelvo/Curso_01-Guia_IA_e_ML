@@ -89,10 +89,28 @@ problema = mlrose.DiscreteOpt(length=12, fitness_fn=fitness,
 melhor_solucao, melhor_custo = mlrose.hill_climb(problema, random_state=1)
 melhor_solucao, melhor_custo
 
-print('-----------')
+print('Hill Climb')
 imprimir_voos(melhor_solucao)
 print('-----------')
 
 voos[('BRU', 'FCO')]
 
 # Simulated Annealing
+
+melhor_solucao, melhor_custo = mlrose.simulated_annealing(problema, 
+                                                          schedule=mlrose.decay.GeomDecay(init_temp=10000),
+                                                          random_state=1)
+melhor_solucao, melhor_custo
+
+print('Simulated Annealing')
+imprimir_voos(melhor_solucao)
+print('-----------')
+
+# Algoritmo Genético
+
+melhor_solucao, melhor_custo = mlrose.genetic_alg(problema, pop_size=500, mutation_prob=0.2, random_state=1)
+melhor_solucao, melhor_custo
+
+print('Algoritmo Genético')
+imprimir_voos(melhor_solucao)
+print('-----------')
