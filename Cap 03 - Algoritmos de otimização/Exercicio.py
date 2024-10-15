@@ -35,8 +35,9 @@ def fitness_function(solucao):
     custo = 0
     soma_espaco = 0
     for i in range(len(solucao)):
-        custo += produtos[i][2]
-        soma_espaco += produtos[i][1]
+        if solucao[i] == 1:
+            custo += produtos[i][2]
+            soma_espaco += produtos[i][1]
     if soma_espaco > espaco_disponivel:
         custo = 1
     return custo
