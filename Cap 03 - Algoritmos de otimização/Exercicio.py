@@ -26,9 +26,10 @@ def imprimir_solucao(solucao):
     for i in range(len(solucao)):
         if solucao[i] == 1:
             print('%s - %s' % (produtos[i][0], produtos[i][2]))
-    print('----------------')
+    
 
 imprimir_solucao([0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1])
+print('----------------')
 
 def fitness_function(solucao):
     custo = 0
